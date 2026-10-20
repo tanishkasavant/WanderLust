@@ -1,0 +1,220 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    .new-listing-container {
+        max-width: 750px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .new-listing-container h3 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #222;
+    }
+
+    .new-listing-subtitle {
+        color: #777;
+        margin-bottom: 25px;
+        font-size: 15px;
+    }
+
+    .new-listing-card {
+        background: #fff;
+        padding: 30px;
+        border: 1px solid #eee;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    .new-listing-container .form-group {
+        margin-bottom: 22px;
+    }
+
+    .new-listing-container label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 9px;
+        color: #333;
+    }
+
+    .new-listing-container input,
+    .new-listing-container textarea {
+        display: block;
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+        box-sizing: border-box;
+        font-family: inherit;
+        background: #fff;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .new-listing-container textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    .new-listing-container input:focus,
+    .new-listing-container textarea:focus {
+        outline: none;
+        border-color: #fe424d;
+        box-shadow: 0 0 0 3px rgba(254, 66, 77, 0.12);
+    }
+
+    .new-listing-container input[type="file"] {
+        background: #fafafa;
+        cursor: pointer;
+    }
+
+    .new-listing-container .form-note {
+        margin-top: 8px;
+        margin-bottom: 0;
+        font-size: 13px;
+        color: #777;
+    }
+
+    .new-listing-container .add-listing-btn {
+        display: inline-block;
+        background: #fe424d;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+    .new-listing-container .add-listing-btn:hover {
+        background: #e53640;
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+        .new-listing-container {
+            margin: 20px auto;
+            padding: 12px;
+        }
+
+        .new-listing-container h3 {
+            font-size: 25px;
+        }
+
+        .new-listing-card {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="new-listing-container">
+
+    <h3>Create a New Listing</h3>
+
+    <p class="new-listing-subtitle">
+        Share your place with travellers around the world.
+    </p>
+
+    <div class="new-listing-card">
+
+        <form
+            method="POST"
+            action="/listings"
+            enctype="multipart/form-data"
+        >
+
+            <!-- Title -->
+            <div class="form-group">
+                <label for="title">Listing Title</label>
+
+                <input
+                    type="text"
+                    name="listing[title]"
+                    id="title"
+                    placeholder="Enter listing title"
+                    required
+                >
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description</label>
+
+                <textarea
+                    name="listing[description]"
+                    id="description"
+                    placeholder="Describe your property"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Image -->
+            <div class="form-group">
+                <label for="image">Upload Listing Image</label>
+
+                <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/png, image/jpeg"
+                    required
+                >
+
+                <p class="form-note">
+                    Choose a PNG or JPEG image of your property.
+                </p>
+            </div>
+
+            <!-- Price -->
+            <div class="form-group">
+                <label for="price">Price per night (₹)</label>
+
+                <input
+                    type="number"
+                    name="listing[price]"
+                    id="price"
+                    placeholder="Enter price"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+                <label for="country">Country</label>
+
+                <input
+                    type="text"
+                    name="listing[country]"
+                    id="country"
+                    placeholder="Enter country"
+                    required
+                >
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+                <label for="location">Location</label>
+
+                <input
+                    type="text"
+                    name="listing[location]"
+                    id="location"
+                    placeholder="Enter location"
+                    required
+                >
+            </div>
+
+            <!-- Submit -->
+            <button class="add-listing-btn" type="submit">
+                Add Listing
+            </button>
+
+        </form>
+
+    </div>
+</div>

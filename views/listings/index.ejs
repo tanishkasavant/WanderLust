@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>All Listings</h3>
+
+    <div class="tax-toggle">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="taxSwitch">
+            <label class="form-check-label" for="taxSwitch">
+                Display total prices
+            </label>
+        </div>
+        <small class="text-muted">Includes 18% GST</small>
+    </div>
+</div>
+
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 g-4">
+
+        <% for(let listing of allListings){ %>
+
+            <a href="/listings/<%= listing._id %>"class="listing-link">
+                <div class="col">
+                    <div class="card">
+
+                        <img src="<%= listing.image.url || listing.image %>" 
+                             class="card-img-top" 
+                             alt="listing_image">
+
+                        <div class="card-img-overlay"></div>    
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b><%= listing.title %></b><br/>
+                                &#8377; <span class="listing-price" data-price="<%= listing.price %>"><%= listing.price.toLocaleString("en-IN") %></span>/night
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+
+        <% } %>
+        <script>
+    const taxSwitch = document.querySelector("#taxSwitch");
+    const prices = document.querySelectorAll(".listing-price");
+
+    taxSwitch.addEventListener("change", () => {
+        prices.forEach((price) => {
+            const originalPrice = Number(price.dataset.price);
+
+            if (taxSwitch.checked) {
+                price.textContent = Math.round(originalPrice * 1.18).toLocaleString("en-IN");
+            } else {
+                price.textContent = originalPrice.toLocaleString("en-IN");
+            }
+        });
+    });
+</script>
+
+    </div>
+</body>
