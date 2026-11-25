@@ -50,13 +50,7 @@ npm install
 
 Create a `.env` file in the root directory and add your credentials:
 
-```env
-MONGO_URL=your_mongodb_connection_string
-CLOUD_NAME=your_cloudinary_cloud_name
-CLOUD_API_KEY=your_cloudinary_api_key
-CLOUD_API_SECRET=your_cloudinary_api_secret
-MAP_TOKEN=your_mapbox_access_token
-```
+
 
 ### 5. Start the application
 
